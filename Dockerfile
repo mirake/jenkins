@@ -8,7 +8,7 @@ ENV JENKINS_SLAVE_AGENT_PORT 50000
 # Jenkins is ran with user `jenkins`, uid = 1000
 # If you bind mount a volume from host/volume from a data container, 
 # ensure you use same uid
-RUN useradd -d "$JENKINS_HOME" -u 1000 -m -s /bin/bash jenkins
+# RUN useradd -d "$JENKINS_HOME" -u 1000 -m -s /bin/bash jenkins
 
 # Jenkins home directoy is a volume, so configuration and build history 
 # can be persisted and survive image upgrades
@@ -46,7 +46,7 @@ EXPOSE 50000
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
-USER jenkins
+# USER jenkins
 
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
